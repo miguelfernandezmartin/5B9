@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #provincia{
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <h1>Envio</h1>
+<form action="procesa.php" onsubmit="return validaFormulario()">
+    <label for="pais">Pais</label>
+    <select name="pais" id="pais">
+        <option value="">Elija una</option>
+        <option value="es">España</option>
+        <option value="no-es">Fuera de España</option>
+    </select>
+
+    <label for="provincia">Provincia</label>
+    <select name="provincia" id="provincia">
+        <option value="">Elija una</option>
+        <option value="cr">Ciudad Real</option>
+        <option value="ab">Albacete</option>
+        <option value="cu">Cuenca</option>
+        <option value="to">Toledo</option>
+        <option value="gu">Guadalajara</option>
+    </select>
+
+    <input type="submit" value="Enviar">
+
+    <script>
+        document.getElementById("pais").addEventListener('change',muestraProvincia);
+        function muestraProvincia(){
+            if(document.getElementById("pais").value === "es"){
+            document.querySelector("#provincia").style.visibility = "visible";
+        }else{
+            document.querySelector("#provincia").style.visibility = "hidden";
+        }
+        }
+
+        function validaFormulario(){
+            if(document.getElementById('pais').value === ""){
+                alert("Debe seleccionar un país");
+                return false;
+            }
+
+            if(document.getElementById('pais').value === "es" && document.getElementById('provincia').value ===""){
+                alert("Debe seleccionar una provincia");
+                return false
+            }
+            return true;
+        }
+    </script>
+</form>
+</body>
+</html>
